@@ -2,14 +2,14 @@ let time = 0;
 let wave = [];
 let circles;
 function setup() {
-  createCanvas(800, 400);
+  createCanvas(1240, 680);
   circles = createSlider(1, 15, 3, 1);
 }
 
 function draw() {
   let quantity = circles.value();
   background(0);
-  translate(200,200);
+  translate(300,200);
   stroke(255);
   noFill();
   

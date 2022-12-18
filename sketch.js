@@ -50,7 +50,7 @@ function draw() {
   
   time += frequency/150;
 
-  while (wave.length > 300) {
+  while (wave.length > 400) {
     wave.pop();
   }
 }

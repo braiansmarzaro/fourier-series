@@ -2,14 +2,16 @@ let time = 0;
 let wave = [];
 let circles;
 function setup() {
-  createCanvas(1240, 680);
+  createCanvas(1240, 480);
   circles = createSlider(1, 15, 3, 1);
+  freq = createSlider(1, 10, 1, 1);
 }
 
 function draw() {
   let quantity = circles.value();
+  let frequency = freq.value();
   background(0);
-  translate(300,200);
+  translate(320,200);
   stroke(255);
   noFill();
   
@@ -46,7 +48,7 @@ function draw() {
   }
   endShape();
   
-  time += 0.01;
+  time += frequency/150;
 
   while (wave.length > 300) {
     wave.pop();

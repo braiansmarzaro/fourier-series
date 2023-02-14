@@ -1,1 +1,1 @@
-# Fourier-p5-js
+# Fourier Series with p5.js

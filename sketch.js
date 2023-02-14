@@ -1,31 +1,16 @@
 let time = 0;
 let wave = [];
-let circles,freq;
+let circles, freq;
 
 let img;
 
 function setup() {
-  let A = createInput('');
-  let B = createInput('');
   createCanvas(1240, 480);
   //Sliders
   circles = createSlider(1, 15, 3, 1);
-  freq = createSlider(1, 10, 1, 1);
+  freq = createSlider(1, 10, 3, 1);
 
-  img = loadImage('assets/equation.png')
-
-  //Config inputs
-  A.position(0, height-A.height*2);
-  A.size(100);
-  ainp = A.input(myInputEvent);
-  B.position(0, height-A.height);
-  B.size(100);
-  binp = B.input(myInputEvent);
-}
-
-function myInputEvent() {
-  
-  console.log('you are typing: ', this.value());
+  img = loadImage("assets/equation.png");
 }
 
 function draw() {
@@ -38,31 +23,38 @@ function draw() {
 
   let x = 0;
   let y = 0;
-  for (let i = 1; i < quantity; i++) {
+  let sign = 1;
+  let seriesType = "dente de serra down";
+  for (let i = 0; i < quantity; i++) {
+    if (seriesType == "dente de serra down") {
+      var n = i + 1;
+      sign = n % 2 === 0 ? -1 : 1;
+      var radius = 100 * (4 / (n * PI));
+    } else if (seriesType == "quadrada") {
+      var n = i * 2 + 1;
+      var radius = 100 * (4 / (n * PI)); // 4/(n*PI) se refere à constante da função quadratica
+    }else if (seriesType == "dente de serra up") {
+      var n = i + 1;
+      sign = n % 2 === 0 ? 1 : -1;
+      var radius = 100 * (4 / (n * PI));}
+
     let prevx = x;
     let prevy = y;
-    let n = TWO_PI*i;
-    
-    //Fourier series Equation
-    let radius = (4 / (n * PI)) * 300;
-    x += -radius * cos(n * time);
-    y += radius * sin(n * time);
+    x += sign * radius * cos(n * 2*PI*time);
+    y += sign * radius * sin(n * 2*PI*time);
 
-    //Draw circles
-    stroke(100);
-    fill(0, 30 * i, 10 * i, 100);
+    stroke(255, 100);
+    noFill();
     ellipse(prevx, prevy, radius * 2);
+
+    fill(255);
+    stroke(255);
     line(prevx, prevy, x, y);
   }
   wave.unshift(y);
-  fill(255);
-  ellipse(x, y, 4);
 
-  translate(280, 0);
-  stroke(100);
-  line(x - 280, y, 0, wave[0]);
-  stroke(200);
-
+  translate(200, 0);
+  line(x - 200, y, 0, wave[0]);
   beginShape();
   noFill();
   for (let i = 0; i < wave.length; i++) {
@@ -71,14 +63,13 @@ function draw() {
   endShape();
 
   //time step
-  time += frequency / 150;
+  time += frequency / 300;
 
   //wave lenght limit
   while (wave.length > 400) {
     wave.pop();
   }
   //Draw equation image
-  translate(-600,-200)
-  image(img, 0,0, img.width/1.5, img.height/1.5);
-
+  translate(-600, -200);
+  image(img, 0, 0, img.width / 1.5, img.height / 1.5);
 }

@@ -6,17 +6,24 @@ let img;
 
 function setup() {
   createCanvas(1240, 480);
+  
   //Sliders
   circles = createSlider(1, 15, 3, 1);
-  freq = createSlider(1, 10, 3, 1);
+  freq = createSlider(1, 10, 2, 1);
 
   img = loadImage("assets/equation.png");
 }
 
 function draw() {
+  let seriesType = window.document.querySelector('input[name="radseries"]:checked').getAttribute("id");
+  console.log(seriesType);
   let quantity = circles.value();
   let frequency = freq.value();
   background(10);
+  textSize(15);
+  fill(255)
+  text('Quantidade de círculos', 0, 465);
+  text('Frequência', 200, 465);
   translate(320, 200);
   stroke(255);
   noFill();
@@ -24,24 +31,24 @@ function draw() {
   let x = 0;
   let y = 0;
   let sign = 1;
-  let seriesType = "dente de serra down";
   for (let i = 0; i < quantity; i++) {
-    if (seriesType == "dente de serra down") {
+    if (seriesType == "serradown") {
       var n = i + 1;
       sign = n % 2 === 0 ? -1 : 1;
       var radius = 100 * (4 / (n * PI));
     } else if (seriesType == "quadrada") {
       var n = i * 2 + 1;
       var radius = 100 * (4 / (n * PI)); // 4/(n*PI) se refere à constante da função quadratica
-    }else if (seriesType == "dente de serra up") {
+    } else if (seriesType == "serraup") {
       var n = i + 1;
       sign = n % 2 === 0 ? 1 : -1;
-      var radius = 100 * (4 / (n * PI));}
+      var radius = 100 * (4 / (n * PI));
+    }
 
     let prevx = x;
     let prevy = y;
-    x += sign * radius * cos(n * 2*PI*time);
-    y += sign * radius * sin(n * 2*PI*time);
+    x += sign * radius * cos(n * 2 * PI * time);
+    y += sign * radius * sin(n * 2 * PI * time);
 
     stroke(255, 100);
     noFill();
@@ -66,10 +73,10 @@ function draw() {
   time += frequency / 300;
 
   //wave lenght limit
-  while (wave.length > 400) {
+  while (wave.length > 500) {
     wave.pop();
   }
   //Draw equation image
   translate(-600, -200);
-  image(img, 0, 0, img.width / 1.5, img.height / 1.5);
+  //image(img, 0, 0, img.width / 1.5, img.height / 1.5);
 }

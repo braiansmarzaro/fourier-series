@@ -14,11 +14,18 @@
   </head>
 
   <body>
-    <div id="radiobtn">
-    <input type="radio" name="radseries" id="quadrada" checked>Quadrada
-    <input type="radio" name="radseries" id="serraup">Dente de serra subindo
-    <input type="radio" name="radseries" id="serradown">Dente de serra descendo
-    </div>
+    <section id="section">
+      <div id="radiobtn">
+      <input type="radio" name="radseries" id="quadrada" checked>Quadrada
+      <input type="radio" name="radseries" id="serraup">Dente de serra subindo
+      <input type="radio" name="radseries" id="serradown">Dente de serra descendo
+      <input type="radio" name="radseries" id="meiaonda">Meia onda
+      </div>
+      <div id="slider">
+        Quantidade de harmônicas<input id="circles" value="3" type="range" min="1" max="15" step="1">
+        Frequência<input id="frequency" value="1" type="range" min="1" max="15" step="1">
+      </div>
+    </section>
 
     <script src="sketch.js"></script>
 

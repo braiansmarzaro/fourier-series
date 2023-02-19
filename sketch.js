@@ -8,8 +8,8 @@ function setup() {
   createCanvas(1240, 480);
 
   //Sliders
-  circles = createSlider(1, 15, 3, 1);
-  freq = createSlider(1, 10, 2, 1);
+  circles = document.querySelector('input#circles')
+  freq = document.querySelector('input#frequency')
   img = loadImage("assets/equation.png");
 }
 
@@ -19,14 +19,12 @@ function draw() {
     .getAttribute("id");
   console.log(seriesType);
   
-  let quantity = circles.value();
-  let frequency = freq.value();
+  let quantity = circles.value;
+  let frequency = freq.value;
 
   background(10);
   textSize(15);
   fill(255);
-  text("Quantidade de harmônicas", 0, 465);
-  text("Frequência", 200, 465);
   translate(320, 200);
   stroke(255);
   noFill();
@@ -38,7 +36,7 @@ function draw() {
   for (let i = 0; i < quantity; i++) {
     if (seriesType == "quadrada") {
       n = i * 2 + 1;
-      radius = 100 * (4 / (n * PI)); // 4/(n*PI) se refere à constante da função quadratica
+      radius = 80 * (4 / (n * PI)); // 4/(n*PI) se refere à constante da função quadratica
     } else if (seriesType == "serradown") {
       n = i + 1;
       sign = n % 2 === 0 ? -1 : 1;

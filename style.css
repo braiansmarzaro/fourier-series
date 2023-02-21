@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font: normal 14px/1.5 sans-serif;
@@ -9,12 +10,13 @@ canvas {
   display: block;
 }
 
-section{
+section {
   color: black;
   background: white;
   border-radius: 10px;
   padding: 15px;
-  width: 600px;
+  width: auto;
   margin: auto;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.349);
+  text-align: center;
 }

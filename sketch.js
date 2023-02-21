@@ -5,7 +5,7 @@ let circles, freq;
 let img;
 
 function setup() {
-  createCanvas(1240, 480);
+  createCanvas(screen.width, 480);
 
   //Sliders
   circles = document.querySelector('input#circles')
@@ -72,7 +72,7 @@ function draw() {
   endShape();
 
   //time step
-  time += frequency / 300;
+  time += frequency / 360;
 
   //wave lenght limit
   while (wave.length > 500) {
